@@ -16,21 +16,6 @@ docker compose up -d
 
 Open **http://localhost** in your browser.
 
-## Configuration
-
-Copy `.env.example` to `.env` and modify as needed:
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `POSTGRES_USER` | `postgres` | PostgreSQL username |
-| `POSTGRES_PASSWORD` | `postgres` | PostgreSQL password |
-| `POSTGRES_DB` | `tempbox` | Database name |
-| `MAIL_DOMAIN` | `tempbox.com` | Domain for temporary emails |
-| `MAILBOX_TTL_MINUTES` | `20` | Mailbox lifetime in minutes |
 
 ## Services
 
