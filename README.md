@@ -1,0 +1,56 @@
+# TempBox
+
+TempBox is a fast, simple, and privacy focused temporary email service that lets users instantly generate disposable email addresses without creating an account. Users can receive emails in a temporary inbox, view messages in real time, and generate a new address whenever needed. Temporary mailboxes automatically expire, helping keep the service clean and reducing unnecessary data retention.
+
+## Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
+
+## Quick Start
+
+```bash
+git clone https://github.com/asimkhan2005/tempbox.git
+cd tempbox
+docker compose up -d
+```
+
+Open **http://localhost** in your browser.
+
+## Configuration
+
+Copy `.env.example` to `.env` and modify as needed:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `POSTGRES_USER` | `postgres` | PostgreSQL username |
+| `POSTGRES_PASSWORD` | `postgres` | PostgreSQL password |
+| `POSTGRES_DB` | `tempbox` | Database name |
+| `MAIL_DOMAIN` | `tempbox.com` | Domain for temporary emails |
+| `MAILBOX_TTL_MINUTES` | `20` | Mailbox lifetime in minutes |
+
+## Services
+
+| Service | Description |
+|---------|-------------|
+| Frontend | React UI served via Nginx |
+| Backend | Express API server |
+| SMTP | Receives incoming emails |
+| PostgreSQL | Database |
+| Redis | Caching and rate limiting |
+| Nginx | Reverse proxy |
+
+## Stopping
+
+```bash
+docker compose down
+```
+
+To also remove stored data:
+
+```bash
+docker compose down -v
+```

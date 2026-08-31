@@ -1,0 +1,10 @@
+@media (max-width: 640px) {
+  :root {
+    --shadow: 5px 5px 0 var(--border);
+    --shadow-sm: 3px 3px 0 var(--border);
+  }
+
+  html {
+    font-size: 14px;
+  }
+}

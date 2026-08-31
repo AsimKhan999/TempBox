@@ -1,0 +1,67 @@
+.card {
+  border: var(--border-thick);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  word-break: break-all;
+  flex: 1;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.timer {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.timerLabel {
+  color: var(--text-muted);
+}
+
+.timerValue {
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+.timerValue.expired {
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .emailRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+}

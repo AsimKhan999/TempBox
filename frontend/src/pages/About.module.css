@@ -1,0 +1,53 @@
+.about {
+  padding: 32px 0;
+  flex: 1;
+}
+
+.content {
+  border: var(--border-thick);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.text {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  padding: 4px 0;
+  color: var(--text-muted);
+}
+
+.list li::before {
+  content: '- ';
+  font-weight: 700;
+}

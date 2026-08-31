@@ -1,0 +1,19 @@
+:root {
+  --bg: #f7f0df;
+  --surface: #ffffff;
+  --text: #111111;
+  --text-muted: #555555;
+  --primary: #e11b14;
+  --primary-hover: #c41710;
+  --accent: #ffbd66;
+  --border: #111111;
+  --border-thick: 3px solid var(--border);
+  --shadow: 7px 7px 0 var(--border);
+  --shadow-sm: 4px 4px 0 var(--border);
+  --shadow-hover: 5px 5px 0 var(--border);
+  --radius: 0px;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --transition: 0.15s ease;
+  --max-width: 720px;
+}
