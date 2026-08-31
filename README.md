@@ -10,7 +10,7 @@ TempBox is a fast, simple, and privacy focused temporary email service that lets
 
 ```bash
 git clone https://github.com/AsimKhan999/TempBox.git
-cd tempbox
+cd TempBox
 docker compose up -d
 ```
 
