@@ -10,7 +10,6 @@ interface Delivery {
 
 async function processDelivery(delivery: Delivery) {
   for (const recipient of delivery.to) {
-    const localPart = recipient.split('@')[0];
     const domain = recipient.split('@')[1];
 
     if (domain !== config.mailDomain) {
@@ -24,11 +23,10 @@ async function processDelivery(delivery: Delivery) {
       const body = parsed.text || '';
       const html = parsed.html || '';
 
-      const response = await fetch(`${config.backendUrl}/api/test/send-email`, {
+      const response = await fetch(`${config.backendUrl}/api/inbound/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          mailboxLookup: localPart,
           sender: delivery.from,
           senderName: parsed.from?.text || delivery.from,
           recipient: recipient,

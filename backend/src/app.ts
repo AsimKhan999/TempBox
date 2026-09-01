@@ -57,26 +57,6 @@ app.post('/api/inbound/email', async (req, res) => {
   }
 });
 
-// Temporary test endpoint — remove before production
-app.post('/api/test/send-email', async (req, res) => {
-  try {
-    const { mailboxId, sender, subject, textBody, htmlBody } = req.body;
-    const msg = await messageService.create({
-      mailboxId,
-      sender: sender || 'test@example.com',
-      senderName: 'Test Sender',
-      recipient: 'test@tempbox.com',
-      subject: subject || 'Test Email',
-      textBody: textBody || 'This is a test email.',
-      htmlBody: htmlBody || '<p>This is a <strong>test email</strong>.</p>',
-    });
-    res.json(msg);
-  } catch (err) {
-    console.error('Test send failed:', err);
-    res.status(500).json({ message: 'Failed to send test email' });
-  }
-});
-
 app.use('/api/mailboxes', mailboxRoutes);
 app.use('/api/mailboxes', sseRoutes);
 app.use('/api/messages', messageRoutes);
