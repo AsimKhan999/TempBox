@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useExpirationTimer } from '../../hooks/useExpirationTimer';
 import { useMailbox } from '../../hooks/useMailbox';
 import styles from './MailboxCard.module.css';
 
 export function MailboxCard() {
   const { mailbox, createMailbox, loading } = useMailbox();
-  const { remaining, expired } = useExpirationTimer(mailbox?.expiresAt ?? null);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -33,16 +31,6 @@ export function MailboxCard() {
         <button className="primary" onClick={handleNewEmail} disabled={loading}>
           New Email
         </button>
-      </div>
-      <div className={styles.timer}>
-        {expired ? (
-          <span className={`${styles.timerValue} ${styles.expired}`}>EXPIRED</span>
-        ) : (
-          <>
-            <span className={styles.timerLabel}>Expires in</span>
-            <span className={styles.timerValue}>{remaining}</span>
-          </>
-        )}
       </div>
     </div>
   );
