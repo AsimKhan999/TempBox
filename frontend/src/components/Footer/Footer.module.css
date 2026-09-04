@@ -1,0 +1,15 @@
+.footer {
+  border-top: var(--border-thick);
+  background: var(--surface);
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
