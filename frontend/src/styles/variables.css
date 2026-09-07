@@ -1,11 +1,14 @@
 :root {
   --bg: #f7f0df;
+  --bg-secondary: #ffffff;
   --surface: #ffffff;
   --text: #111111;
   --text-muted: #555555;
   --primary: #e11b14;
   --primary-hover: #c41710;
   --accent: #ffbd66;
+  --accent-red: #e11b14;
+  --accent-blue: #2563eb;
   --border: #111111;
   --border-thick: 3px solid var(--border);
   --shadow: 7px 7px 0 var(--border);

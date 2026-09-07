@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
+import authRoutes from './routes/auth.routes.js';
 import mailboxRoutes from './routes/mailbox.routes.js';
 import messageRoutes from './routes/message.routes.js';
 import sseRoutes from './routes/sse.routes.js';
+import savedMailboxRoutes from './routes/savedMailbox.routes.js';
 import { messageService } from './services/message.service.js';
 import { mailboxService } from './services/mailbox.service.js';
 import { apiLimiter, mailboxCreationLimiter } from './middleware/rateLimit.js';
@@ -57,8 +59,10 @@ app.post('/api/inbound/email', async (req, res) => {
   }
 });
 
+app.use('/api/auth', authRoutes);
 app.use('/api/mailboxes', mailboxRoutes);
 app.use('/api/mailboxes', sseRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/saved', savedMailboxRoutes);
 
 export default app;

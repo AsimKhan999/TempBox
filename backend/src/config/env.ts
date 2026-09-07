@@ -10,4 +10,5 @@ export const config = {
   mailDomain: process.env.MAIL_DOMAIN || 'tempbox.dev',
   mailboxTtlMinutes: parseInt(process.env.MAILBOX_TTL_MINUTES || '20', 10),
   maxEmailSizeMb: parseInt(process.env.MAX_EMAIL_SIZE_MB || '10', 10),
+  jwtSecret: process.env.JWT_SECRET || 'tempbox-secret-key-change-in-production',
 };

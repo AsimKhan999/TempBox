@@ -77,7 +77,7 @@ export function Home() {
       <div className="container">
         <div className={styles.hero}>
           <p className={styles.heroText}>
-            Disposable email. No signup required.
+            Disposable email. Create one, use it, forget it.
           </p>
         </div>
 

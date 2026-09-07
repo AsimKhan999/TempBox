@@ -8,6 +8,15 @@ CREATE TABLE IF NOT EXISTS domains (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+
 CREATE TABLE IF NOT EXISTS mailboxes (
   id UUID PRIMARY KEY,
   email_address VARCHAR(255) NOT NULL UNIQUE,
@@ -15,12 +24,24 @@ CREATE TABLE IF NOT EXISTS mailboxes (
   status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
-  last_accessed_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+  last_accessed_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  user_id UUID REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE INDEX IF NOT EXISTS idx_mailboxes_email ON mailboxes(email_address);
 CREATE INDEX IF NOT EXISTS idx_mailboxes_expires ON mailboxes(expires_at);
 CREATE INDEX IF NOT EXISTS idx_mailboxes_status ON mailboxes(status);
+
+CREATE TABLE IF NOT EXISTS saved_mailboxes (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  mailbox_id UUID NOT NULL REFERENCES mailboxes(id) ON DELETE CASCADE,
+  label VARCHAR(255),
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  UNIQUE(user_id, mailbox_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_saved_mailboxes_user ON saved_mailboxes(user_id);
 
 CREATE TABLE IF NOT EXISTS emails (
   id UUID PRIMARY KEY,
@@ -47,9 +68,18 @@ CREATE TABLE IF NOT EXISTS email_headers (
 CREATE INDEX IF NOT EXISTS idx_email_headers_email ON email_headers(email_id);
 `;
 
+const ALTERS = [
+  `ALTER TABLE mailboxes ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES users(id) ON DELETE SET NULL`,
+  `CREATE INDEX IF NOT EXISTS idx_mailboxes_user ON mailboxes(user_id)`,
+];
+
 export async function migrate() {
   console.log('Running database migration...');
   await pool.query(SCHEMA);
+
+  for (const sql of ALTERS) {
+    await pool.query(sql);
+  }
 
   const defaultDomain = process.env.MAIL_DOMAIN || 'tempbox.dev';
   await pool.query(

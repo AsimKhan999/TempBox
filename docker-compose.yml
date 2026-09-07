@@ -38,6 +38,7 @@ services:
       REDIS_URL: redis://redis:6379
       MAIL_DOMAIN: tempbox.com
       MAILBOX_TTL_MINUTES: 20
+      JWT_SECRET: ${JWT_SECRET:-tempbox-production-secret-change-me}
     depends_on:
       postgres:
         condition: service_healthy
