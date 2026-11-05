@@ -23,6 +23,20 @@
   font-weight: 600;
 }
 
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  max-width: min(400px, calc(100vw - 48px));
+  padding: 14px 18px;
+  border: var(--border-thick);
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow);
+  font-weight: 600;
+}
+
 .retryButton {
   margin-top: 8px;
   background: #fff;

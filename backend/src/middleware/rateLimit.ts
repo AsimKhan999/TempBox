@@ -11,6 +11,7 @@ export const apiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   store: new RedisStore({
+    prefix: 'api-limit:',
     sendCommand: (command: string, ...args: string[]) => redisClient.call(command, ...args) as any,
   } as any),
   message: { message: 'Too many requests. Please wait and try again.' },
@@ -22,7 +23,8 @@ export const mailboxCreationLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   store: new RedisStore({
+    prefix: 'mailbox-limit:',
     sendCommand: (command: string, ...args: string[]) => redisClient.call(command, ...args) as any,
   } as any),
-  message: { message: 'Too many mailboxes created. Please wait before creating another.' },
+  message: { message: 'Too many mailboxes created. Please wait for 60s before creating another.' },
 });
