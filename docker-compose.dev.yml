@@ -1,16 +1,4 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: tempbox-db
-    ports:
-      - "5432:5432"
+  smtp:
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: tempbox
-
-  redis:
-    image: redis:7-alpine
-    container_name: tempbox-redis
-    ports:
-      - "6379:6379"
+      BACKEND_URL: http://host.docker.internal:5000

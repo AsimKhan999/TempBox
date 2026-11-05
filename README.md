@@ -16,6 +16,39 @@ docker compose up -d
 
 Open **http://localhost** in your browser.
 
+## Local development
+
+1. Install [Node.js](https://nodejs.org/) and [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+2. Start Docker Desktop, then from the project root start PostgreSQL and Redis:
+
+   ```bash
+   docker compose up -d postgres redis
+   ```
+
+3. Install dependencies for the root command, backend, and frontend:
+
+   ```bash
+   npm install
+   npm install --prefix backend
+   npm install --prefix frontend
+   ```
+
+4. Run both local development servers together:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the Vite URL printed in the terminal (usually **http://localhost:5173**). The backend runs at **http://localhost:5000**.
+
+The backend applies database migrations on startup. To stop both servers, press **Ctrl+C**; stop the database containers with `docker compose down` when finished.
+
+This starts the app locally but does not make `tempbox.com` receive mail from the internet. External delivery requires a domain with MX records pointing to a publicly reachable SMTP server. For development, send a test email directly to the SMTP container on `localhost:25`; its development override forwards mail to the local backend:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d smtp
+```
+
 
 ## Services
 
