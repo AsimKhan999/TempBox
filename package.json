@@ -1,0 +1,10 @@
+{
+  "name": "tempbox",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k -n backend,frontend -c blue,green \"npm:dev --prefix backend\" \"npm:dev --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
