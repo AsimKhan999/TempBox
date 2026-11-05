@@ -19,18 +19,21 @@ Open **http://localhost** in your browser.
 ## Local development
 
 1. Install [Node.js](https://nodejs.org/) and [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-2. Start Docker Desktop, then from the project root start PostgreSQL and Redis:
 
-   ```bash
-   docker compose up -d postgres redis
-   ```
-
-3. Install dependencies for the root command, backend, and frontend:
+2. Install dependencies for the root command, backend, and frontend:
 
    ```bash
    npm install
    npm install --prefix backend
    npm install --prefix frontend
+
+3. Start Docker Desktop, then from the project root start PostgreSQL and Redis:
+
+   ```bash
+   docker compose up -d postgres redis
+   ```
+
+
    ```
 
 4. Run both local development servers together:
